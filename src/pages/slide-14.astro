@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+
+<html data-theme="light" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Slide 13 - Tipos de Posts</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1024px;
+            height: 768px;
+            background-color: #ffffff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .text-corporate-blue {
+            color: #114a90;
+        }
+        .bg-corporate-blue {
+            background-color: #114a90;
+        }
+        .text-corporate-red {
+            color: #C0504D;
+        }
+        .bg-corporate-red {
+            background-color: #C0504D;
+        }
+        .border-corporate-red {
+            border-color: #C0504D;
+        }
+        .border-corporate-blue {
+            border-color: #114a90;
+        }
+        .table-row-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .table-row-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-left-width: 4px;
+        }
+        .col-type { width: 35%; }
+        .col-objective { width: 30%; }
+        .col-best { width: 35%; }
+    </style>
+</head>
+<body>
+<div class="slide-container font-poppins">
+<header class="w-full h-24 flex items-end justify-between px-12 pb-4 relative z-10">
+<div class="absolute top-0 left-0 w-full h-2 bg-corporate-red"></div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-8 h-1 bg-corporate-red"></span>
+<p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Estrategia de Contenidos</p>
+</div>
+<h2 class="text-4xl font-bold text-corporate-blue">Tipos de Publicaciones</h2>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-3xl font-bold text-gray-200">13</p>
+</div>
+</header>
+<main class="flex-1 px-12 py-8 flex flex-col relative z-10">
+<div class="mb-8 w-3/4">
+<p class="text-lg text-gray-600 font-light leading-relaxed">
+                    No todos los posts sirven para lo mismo. Diversificar tu contenido es clave para mantener una audiencia sana y activa. Aquí tienes la guía rápida:
+                </p>
+</div>
+<div class="flex w-full px-6 py-3 bg-gray-100 rounded-t-xl border-b-2 border-gray-200">
+<div class="col-type">
+<p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Tipo de Post</p>
+</div>
+<div class="col-objective">
+<p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Objetivo Principal</p>
+</div>
+<div class="col-best">
+<p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Mejor Para</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="table-row-card flex w-full bg-white border border-gray-100 rounded-lg p-5 shadow-sm items-center hover:border-l-blue-400 group">
+<div class="col-type flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 text-xl group-hover:bg-blue-500 group-hover:text-white transition-colors">
+<i class="fa-solid fa-comments"></i>
+</div>
+<div>
+<p class="font-bold text-gray-800 text-lg">Engagement</p>
+<p class="text-xs text-gray-400">Interacción directa</p>
+</div>
+</div>
+<div class="col-objective">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-400"></span>
+<p class="text-gray-700 font-medium">Comentarios</p>
+</div>
+</div>
+<div class="col-best">
+<p class="text-gray-600 bg-gray-50 px-3 py-1 rounded-md inline-block border border-gray-100">
+<i class="fa-solid fa-users text-xs mr-2 text-gray-400"></i>Community Building
+                        </p>
+</div>
+</div>
+<div class="table-row-card flex w-full bg-white border border-gray-100 rounded-lg p-5 shadow-sm items-center hover:border-l-yellow-400 group">
+<div class="col-type flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600 text-xl group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+<i class="fa-solid fa-lightbulb"></i>
+</div>
+<div>
+<p class="font-bold text-gray-800 text-lg">Educativa</p>
+<p class="text-xs text-gray-400">Enseñanza / Tips</p>
+</div>
+</div>
+<div class="col-objective">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+<p class="text-gray-700 font-medium">Valor / Autoridad</p>
+</div>
+</div>
+<div class="col-best">
+<p class="text-gray-600 bg-gray-50 px-3 py-1 rounded-md inline-block border border-gray-100">
+<i class="fa-solid fa-medal text-xs mr-2 text-gray-400"></i>Posicionamiento
+                        </p>
+</div>
+</div>
+<div class="table-row-card flex w-full bg-white border border-gray-100 rounded-lg p-5 shadow-sm items-center hover:border-l-corporate-red group">
+<div class="col-type flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-corporate-red text-xl group-hover:bg-corporate-red group-hover:text-white transition-colors">
+<i class="fa-solid fa-percent"></i>
+</div>
+<div>
+<p class="font-bold text-gray-800 text-lg">Promocional</p>
+<p class="text-xs text-gray-400">Ofertas / Servicios</p>
+</div>
+</div>
+<div class="col-objective">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-corporate-red"></span>
+<p class="text-gray-700 font-medium">Ventas</p>
+</div>
+</div>
+<div class="col-best">
+<p class="text-gray-600 bg-gray-50 px-3 py-1 rounded-md inline-block border border-gray-100">
+<i class="fa-solid fa-cart-shopping text-xs mr-2 text-gray-400"></i>Conversiones
+                        </p>
+</div>
+</div>
+<div class="table-row-card flex w-full bg-white border border-gray-100 rounded-lg p-5 shadow-sm items-center hover:border-l-purple-400 group">
+<div class="col-type flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 text-xl group-hover:bg-purple-500 group-hover:text-white transition-colors">
+<i class="fa-solid fa-book-open-reader"></i>
+</div>
+<div>
+<p class="font-bold text-gray-800 text-lg">Storytelling</p>
+<p class="text-xs text-gray-400">Historias / Origen</p>
+</div>
+</div>
+<div class="col-objective">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-purple-400"></span>
+<p class="text-gray-700 font-medium">Conexión</p>
+</div>
+</div>
+<div class="col-best">
+<p class="text-gray-600 bg-gray-50 px-3 py-1 rounded-md inline-block border border-gray-100">
+<i class="fa-solid fa-heart text-xs mr-2 text-gray-400"></i>Brand Building
+                        </p>
+</div>
+</div>
+</div>
+<div class="absolute right-10 bottom-20 w-32 h-32 bg-corporate-blue opacity-5 rounded-full blur-2xl -z-10"></div>
+<div class="absolute left-10 top-40 w-40 h-40 bg-corporate-red opacity-5 rounded-full blur-2xl -z-10"></div>
+</main>
+</div>
+
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <a href="/slide-13" style="padding: 10px 15px; background: #114a90; color: #fff; text-decoration: none; border-radius: 5px; opacity: 1; pointer-events: auto">Anterior</a>
+        <span style="padding: 10px 15px; background: #fff; color: #333; border-radius: 5px; border: 1px solid #ccc;">14 / 26</span>
+        <a href="/slide-15" style="padding: 10px 15px; background: #114a90; color: #fff; text-decoration: none; border-radius: 5px; opacity: 1; pointer-events: auto">Siguiente</a>
+    </div>
+    
+</body>
+</html>
+
+
