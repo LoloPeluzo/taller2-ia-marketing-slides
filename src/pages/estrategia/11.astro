@@ -1,0 +1,19 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import Statement from '../../components/archetypes/Statement.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={11} 
+  totalSlides={17} 
+  prevUrl="/estrategia/10"
+  nextUrl="/estrategia/12"
+>
+  <Statement 
+    num="11"
+    kicker="Estrategia · Ejecución"
+    title1="Los pilares te dan el qué."
+    title2="El calendario "
+    highlight="te da el cuándo."
+  />
+</DeckLayout>

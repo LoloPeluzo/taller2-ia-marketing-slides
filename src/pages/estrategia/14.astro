@@ -1,0 +1,26 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import PromptIA from '../../components/archetypes/PromptIA.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={14} 
+  totalSlides={17} 
+  prevUrl="/estrategia/13"
+  nextUrl="/estrategia/15"
+>
+  <PromptIA 
+    num="14"
+    kicker="Estrategia · Prompt Calendario"
+    title="Planificá tu mes en minutos"
+    subtitle="Usa la IA para distribuir tus pilares en un calendario realista."
+    footerHighlight="La IA estructura, <strong class='text-brand-blue font-bold'>vos le das el toque humano</strong>."
+    promptText={`Actúa como Content Manager.
+Tengo estos pilares: [INSERTA TUS PILARES].
+Quiero publicar [N] veces por semana.
+
+Armame un calendario mensual en formato tabla.
+Para cada día incluye: Fecha, Pilar, Tema específico, y Formato (Reel, Carrusel, Historia).
+Asegurate de aplicar la regla del 90/10 (90% valor, 10% venta).`}
+  />
+</DeckLayout>

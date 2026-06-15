@@ -1,0 +1,23 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import PilaresRestaurante from '../../components/archetypes/PilaresRestaurante.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={10} 
+  totalSlides={17} 
+  prevUrl="/estrategia/9"
+  nextUrl="/estrategia/11"
+>
+  <PilaresRestaurante 
+    num="10"
+    kicker="Estrategia · Anti-patrones"
+    title="Lo que debés evitar"
+    footerHighlight="Evitá ser un <span class='text-brand-red'>catálogo aburrido</span>."
+    cards={[
+      { name: 'Vender todo el tiempo', desc: 'Tu feed parece un folleto de supermercado.', pct: 80, color: 'red' },
+      { name: 'Hablar solo de ti', desc: 'El contenido es sobre tu empresa, no sobre el cliente.', pct: 15, color: 'red' },
+      { name: 'Falta de personalidad', desc: 'Mensaje genérico que no destaca.', pct: 5, color: 'red' }
+    ]}
+  />
+</DeckLayout>

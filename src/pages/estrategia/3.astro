@@ -5,21 +5,18 @@ import PilaresRestaurante from '../../components/archetypes/PilaresRestaurante.a
 
 <DeckLayout 
   currentSlideNum={3} 
-  totalSlides={6} 
+  totalSlides={17} 
   prevUrl="/estrategia/2"
   nextUrl="/estrategia/4"
 >
   <PilaresRestaurante 
     num="03"
-    kicker="Estrategia · Ejemplo"
-    title="Ejemplo: un restaurante de barrio"
-    footerHighlight="<span class='text-brand-blue'>70% aporta valor</span>, solo el <span class='text-brand-red'>10% vende</span>."
+    kicker="Estrategia · Comparación"
+    title="La diferencia de tener un norte"
+    footerHighlight="El contenido aleatorio confunde; <span class='text-brand-blue'>los pilares guían</span>."
     cards={[
-      { name: 'Platos estrella', desc: 'Mostrar el producto, dar ganas de ir', pct: 30, color: 'blue' },
-      { name: 'Detrás de cámaras', desc: 'Humanizar la marca, generar cercanía', pct: 25, color: 'blue' },
-      { name: 'Clientes felices', desc: 'Prueba social, testimonios reales', pct: 20, color: 'blue' },
-      { name: 'Tips culinarios', desc: 'Aportar valor, posicionarse como experto', pct: 15, color: 'blue' },
-      { name: 'Promociones', desc: 'Vender directo, eventos, reservas', pct: 10, color: 'red' }
+      { name: 'Sin pilares', desc: 'Sube lo que se le ocurre ese día. Mensaje difuso. Se queda sin ideas rápido.', pct: 0, color: 'red' },
+      { name: 'Con pilares', desc: 'Sabe exactamente qué temas tocar. Atrae a la audiencia correcta.', pct: 100, color: 'blue' }
     ]}
   />
 </DeckLayout>

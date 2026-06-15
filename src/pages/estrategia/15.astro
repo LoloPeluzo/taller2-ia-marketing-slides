@@ -1,0 +1,27 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import Rutina from '../../components/archetypes/Rutina.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={15} 
+  totalSlides={17} 
+  prevUrl="/estrategia/14"
+  nextUrl="/estrategia/16"
+  themeName="Calendario"
+>
+  <Rutina 
+    num="15"
+    kicker="Estrategia · Rutina"
+    title="La rutina que lo sostiene"
+    hours="2–3 h"
+    hoursSubtitle="por semana, en total"
+    footerHighlight="No es fuerza de voluntad: es un <span class='text-brand-red'>sistema repetible</span>."
+    steps={[
+      { day: 'Lunes', accent: 'blue', tasks: [{ t: 'Generar el calendario', d: "30'" }, { t: 'Crear los posts', d: "60–90'" }] },
+      { day: 'Martes', accent: 'blue', tasks: [{ t: 'Programar todo', d: "30'" }] },
+      { day: 'A diario', accent: 'red', tasks: [{ t: 'Responder comentarios', d: "10'" }] },
+      { day: 'Viernes', accent: 'blue', tasks: [{ t: 'Revisar qué funcionó', d: "15'" }] }
+    ]}
+  />
+</DeckLayout>

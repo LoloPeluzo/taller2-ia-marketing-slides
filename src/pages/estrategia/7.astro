@@ -1,0 +1,24 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import PilaresRestaurante from '../../components/archetypes/PilaresRestaurante.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={7} 
+  totalSlides={17} 
+  prevUrl="/estrategia/6"
+  nextUrl="/estrategia/8"
+>
+  <PilaresRestaurante 
+    num="07"
+    kicker="Estrategia · Ejemplo"
+    title="Ejemplo: un profesional independiente"
+    footerHighlight="Aporta <span class='text-brand-blue'>autoridad</span>, vende con <span class='text-brand-red'>confianza</span>."
+    cards={[
+      { name: 'Tutoriales paso a paso', desc: 'Demuestra su conocimiento práctico', pct: 40, color: 'blue' },
+      { name: 'Casos de éxito', desc: 'Resultados reales de clientes', pct: 25, color: 'blue' },
+      { name: 'Mitos del sector', desc: 'Rompe falsas creencias', pct: 20, color: 'blue' },
+      { name: 'Servicios/Consultoría', desc: 'Venta directa de su tiempo o infoproductos', pct: 15, color: 'red' }
+    ]}
+  />
+</DeckLayout>

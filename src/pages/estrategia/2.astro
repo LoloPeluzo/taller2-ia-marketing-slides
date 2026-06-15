@@ -1,25 +1,19 @@
 ---
 import DeckLayout from '../../layouts/DeckLayout.astro';
-import Regla9010 from '../../components/archetypes/Regla9010.astro';
+import Statement from '../../components/archetypes/Statement.astro';
 ---
 
 <DeckLayout 
   currentSlideNum={2} 
-  totalSlides={6} 
+  totalSlides={17} 
   prevUrl="/estrategia/1"
   nextUrl="/estrategia/3"
 >
-  <Regla9010 
+  <Statement 
     num="02"
-    kicker="Estrategia · Desglose"
-    title="La regla del 90/10"
-    subtitle="Qué mezcla de contenido publicar para crecer sin quemar a tu audiencia."
-    footerHighlight="Como mucho <span class='text-brand-red'>1 de cada 5</span> publicaciones vende directamente."
-    rows={[
-      { name: 'Educar', desc: 'Enseñar algo útil de tu sector', pct: 35, color: 'blue' },
-      { name: 'Entretener', desc: 'El lado humano, el día a día', pct: 30, color: 'blue' },
-      { name: 'Conectar', desc: 'Historias, comunidad, testimonios', pct: 25, color: 'blue' },
-      { name: 'Vender', desc: 'Promoción directa, ofertas', pct: 10, color: 'red' }
-    ]}
+    kicker="Estrategia · Concepto"
+    title1="Tu negocio en redes"
+    title2="es como una "
+    highlight="revista."
   />
 </DeckLayout>

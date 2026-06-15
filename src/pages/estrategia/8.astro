@@ -1,0 +1,19 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import Statement from '../../components/archetypes/Statement.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={8} 
+  totalSlides={17} 
+  prevUrl="/estrategia/7"
+  nextUrl="/estrategia/9"
+>
+  <Statement 
+    num="08"
+    kicker="Estrategia · Audiencia"
+    title1="El punto dulce es la"
+    title2="intersección entre "
+    highlight="lo que sabes<br/>y lo que ellos buscan."
+  />
+</DeckLayout>
