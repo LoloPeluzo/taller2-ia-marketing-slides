@@ -1,0 +1,100 @@
+---
+import SlideFrame from '../SlideFrame.astro';
+
+interface Props {
+  num: string;
+  kicker: string;
+  title: string;
+  subtitle: string;
+  footerHighlight: string;
+  rows: {
+    name: string;
+    desc: string;
+    pct: number;
+    color: 'blue' | 'red';
+  }[];
+}
+
+const { num, kicker, title, subtitle, footerHighlight, rows } = Astro.props;
+
+// Calculate delays
+const delays = rows.map((_, i) => `${0.25 + i * 0.1}s`);
+---
+
+<SlideFrame num={num} kicker={kicker}>
+  <div class="flex items-end justify-between gap-[4cqw] animate-rise-in">
+    <div>
+      <h1 class="font-display font-bold text-[6.6cqh] leading-none tracking-[-0.02em] m-0 text-brand-blue">{title}</h1>
+    </div>
+    <p class="font-body text-[2cqh] leading-[1.4] text-ink-secondary m-0 max-w-[24cqw] text-right">{subtitle}</p>
+  </div>
+
+  <div class="relative z-10 flex h-[3.4cqh] rounded-[0.6cqh] overflow-hidden my-[4.2cqh] bg-gray-200 animate-rise-in" style="animation-delay: 0.08s">
+    <!-- Value Bar -->
+    <div class="w-[90%] bg-brand-blue origin-left animate-fill-x flex items-center pl-[1.6cqw]" style="animation-delay: 0.25s">
+      <span class="font-display font-bold text-[1.5cqh] tracking-[0.16em] text-white uppercase">90% · aporta valor</span>
+    </div>
+    <div class="w-[10%] bg-brand-red origin-left animate-fill-x flex items-center justify-center" style="animation-delay: 0.55s">
+      <span class="font-display font-bold text-[1.5cqh] tracking-[0.1em] text-white">10%</span>
+    </div>
+  </div>
+
+  <div class="relative z-10 flex flex-col justify-center flex-1 gap-[3.4cqh] mt-[1cqh]">
+    {rows.map((r, i) => (
+      <div class="grid grid-cols-[20cqw_1fr_11cqw] items-center gap-[2.4cqw] animate-rise-in" style={`animation-delay: ${0.25 + i * 0.1}s`}>
+        <div>
+          <div class={`font-display font-semibold text-[2.9cqh] leading-[1.1] ${r.color === 'red' ? 'text-brand-red' : 'text-brand-blue'}`}>
+            {r.name}
+          </div>
+          <div class="font-body text-[1.55cqh] text-ink-secondary mt-[0.4cqh]">
+            {r.desc}
+          </div>
+        </div>
+        
+        <div class="h-[2.4cqh] rounded-[1.2cqh] bg-gray-200 overflow-hidden">
+          <div 
+            class={`h-full rounded-[1.2cqh] origin-left animate-fill-x ${r.color === 'red' ? 'bg-brand-red' : 'bg-brand-blue'}`} 
+            style={`width: ${r.pct}%; animation-delay: ${delays[i]};`}
+          ></div>
+        </div>
+        
+        <div class={`font-display font-bold text-[4.2cqh] text-right leading-none tracking-[-0.01em] ${r.color === 'red' ? 'text-brand-red' : 'text-brand-blue'}`}>
+          <span class="counter-value" data-target={r.pct}>0</span><span class="text-[2.2cqh]">%</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="relative z-10 mt-auto pt-[3cqh] border-t border-border-light flex items-center gap-[1.6cqw] animate-rise-in" style="animation-delay: 0.5s">
+    <span class="font-display font-bold text-[2.4cqh] text-ink" set:html={footerHighlight}></span>
+  </div>
+
+</SlideFrame>
+
+<script>
+  // Simple intersection observer to trigger counters when visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.counter-value');
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target') || '0', 10);
+          const duration = 1200;
+          const start = performance.now();
+          
+          const update = (now: number) => {
+            const p = Math.min(1, (now - start) / duration);
+            counter.textContent = Math.round(target * p).toString();
+            if (p < 1) {
+              requestAnimationFrame(update);
+            }
+          };
+          requestAnimationFrame(update);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+  
+  document.querySelectorAll('.slide-container').forEach(el => observer.observe(el));
+</script>

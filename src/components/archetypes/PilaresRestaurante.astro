@@ -1,0 +1,77 @@
+---
+import SlideFrame from '../SlideFrame.astro';
+
+interface Props {
+  num: string;
+  kicker: string;
+  title: string;
+  footerHighlight: string;
+  cards: {
+    name: string;
+    desc: string;
+    pct: number;
+    color: 'blue' | 'red';
+  }[];
+}
+
+const { num, kicker, title, footerHighlight, cards } = Astro.props;
+---
+
+<SlideFrame num={num} kicker={kicker}>
+  <div class="animate-rise-in">
+    <h1 class="font-display font-bold text-[6.2cqh] leading-none tracking-[-0.02em] m-0 text-brand-blue">{title}</h1>
+  </div>
+
+  <div class="relative z-10 flex-1 grid grid-cols-5 gap-[1.8cqw] items-stretch content-center my-[3.4cqh]">
+    {cards.map((c, i) => (
+      <div 
+        class="group bg-white border border-border-dark rounded-[1.3cqh] p-[2.8cqh_1.6cqw] flex flex-col shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-all duration-250 animate-rise-in hover:-translate-y-[1.2cqh] hover:shadow-[0_2cqh_4cqh_rgba(17,74,144,0.14)]"
+        style={`border-top: 0.7cqh solid ${c.color === 'red' ? 'var(--color-brand-red)' : 'var(--color-brand-blue)'}; animation-delay: ${0.12 + i * 0.08}s;`}
+      >
+        <div class={`font-display font-bold text-[7.4cqh] leading-none tracking-[-0.02em] ${c.color === 'red' ? 'text-brand-red' : 'text-brand-blue'}`}>
+          <span class="counter-value" data-target={c.pct}>0</span><span class="text-[3cqh]">%</span>
+        </div>
+        <div class="font-display font-semibold text-[2.35cqh] leading-[1.15] text-ink mt-[1.8cqh]">{c.name}</div>
+        <div class="font-body text-[1.6cqh] leading-[1.4] text-ink-secondary mt-[0.9cqh] flex-1">{c.desc}</div>
+        
+        <div class="h-[0.7cqh] rounded-[0.7cqh] bg-gray-100 overflow-hidden mt-[1.8cqh]">
+          <div 
+            class={`h-full rounded-[0.7cqh] origin-left animate-fill-x ${c.color === 'red' ? 'bg-brand-red' : 'bg-brand-blue'}`}
+            style={`width: ${c.pct}%; animation-delay: ${0.3 + i * 0.08}s;`}
+          ></div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="relative z-10 flex items-center gap-[1.6cqw] animate-rise-in" style="animation-delay: 0.5s">
+    <span class="font-display font-bold text-[2.5cqh] text-ink" set:html={footerHighlight}></span>
+  </div>
+</SlideFrame>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.counter-value');
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target') || '0', 10);
+          const duration = 1200;
+          const start = performance.now();
+          
+          const update = (now: number) => {
+            const p = Math.min(1, (now - start) / duration);
+            counter.textContent = Math.round(target * p).toString();
+            if (p < 1) {
+              requestAnimationFrame(update);
+            }
+          };
+          requestAnimationFrame(update);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+  
+  document.querySelectorAll('.slide-container').forEach(el => observer.observe(el));
+</script>

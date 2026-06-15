@@ -1,0 +1,28 @@
+---
+import SlideFrame from '../SlideFrame.astro';
+
+interface Props {
+  num: string;
+  kicker: string;
+  title1: string;
+  title2: string;
+  highlight?: string;
+}
+
+const { num, kicker, title1, title2, highlight } = Astro.props;
+---
+
+<SlideFrame num={num} kicker={kicker}>
+  <div class="flex gap-[3.2cqw] items-stretch max-w-[84%]">
+    <!-- Red vertical bar -->
+    <span class="w-[0.7cqh] bg-brand-red flex-none origin-top rounded-[1px] animate-grow-bar" style="animation-delay: 0.15s"></span>
+    
+    <h1 class="font-display font-bold text-[8.4cqh] leading-[1.08] tracking-[-0.02em] m-0 text-brand-blue">
+      <span class="block animate-rise-in text-ink font-semibold" style="animation-delay: 0.18s">{title1}</span>
+      <span class="block mt-[1.6cqh] animate-rise-in" style="animation-delay: 0.34s">
+        {title2}
+        {highlight && <span class="text-brand-red" set:html={highlight} />}
+      </span>
+    </h1>
+  </div>
+</SlideFrame>

@@ -1,0 +1,27 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import PromptIA from '../../components/archetypes/PromptIA.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={4} 
+  totalSlides={6} 
+  prevUrl="/estrategia/3"
+  nextUrl="/estrategia/5"
+>
+  <PromptIA 
+    num="04"
+    kicker="Estrategia · Prompt"
+    title="Acelerá con IA"
+    subtitle="Copiá este prompt y pegalo en tu IA favorita para arrancar en segundos."
+    footerHighlight="Funciona en cualquier IA. La IA propone, <strong class='text-brand-blue font-bold'>tú decidís</strong>."
+    promptText={`Actúa como estratega de contenidos en redes sociales.
+Mi negocio es: [DESCRIPCIÓN EN 1-2 FRASES].
+Mi cliente ideal es: [A QUIÉN ME DIRIJO].
+Mis objetivos son: [VENTAS / VISIBILIDAD / COMUNIDAD...].
+
+Propón de 3 a 5 PILARES de contenido para mi negocio.
+Para cada pilar dame: nombre, para qué sirve, peso (%) y 3 ejemplos.
+Tono claro, sin tecnicismos. Idioma: español.`}
+  />
+</DeckLayout>

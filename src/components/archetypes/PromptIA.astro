@@ -1,0 +1,94 @@
+---
+import SlideFrame from '../SlideFrame.astro';
+
+interface Props {
+  num: string;
+  kicker: string;
+  title: string;
+  subtitle: string;
+  footerHighlight: string;
+  promptText: string;
+}
+
+const { num, kicker, title, subtitle, footerHighlight, promptText } = Astro.props;
+
+// Process prompt text to highlight specific words
+const processText = (text: string) => {
+  return text.split('\n').map(line => {
+    if (line === '') return '<div style="height: 1.85em;"></div>';
+    
+    // Highlight bracketed text
+    let processed = line.replace(/(\[[^\]]*\])/g, '<span style="color: #e8a39c; font-weight: 600;">$1</span>');
+    // Highlight PILARES
+    processed = processed.replace(/PILARES/g, '<span style="color: #7cb3ff; font-weight: 600;">PILARES</span>');
+    
+    return `<div>${processed}</div>`;
+  }).join('');
+};
+
+const processedPrompt = processText(promptText);
+---
+
+<SlideFrame num={num} kicker={kicker}>
+  <style>
+    @keyframes panelIn { 
+      from { opacity: 0; transform: translateY(3cqh) scale(.985); } 
+      to { opacity: 1; transform: none; } 
+    }
+    .animate-panel-in {
+      animation: panelIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+  </style>
+
+  <div class="flex items-end justify-between gap-[4cqw] animate-rise-in">
+    <div>
+      <h1 class="font-display font-bold text-[6.2cqh] leading-none tracking-[-0.02em] m-0 text-brand-blue">{title}</h1>
+    </div>
+    <p class="font-body text-[1.95cqh] leading-[1.4] text-ink-secondary m-0 max-w-[26cqw] text-right">{subtitle}</p>
+  </div>
+
+  <div class="relative z-10 flex-1 flex items-center justify-center mt-[3.4cqh]">
+    <div class="w-[72cqw] bg-[#0f172a] rounded-[1.6cqh] shadow-[0_3cqh_7cqh_rgba(15,23,42,0.28)] overflow-hidden animate-panel-in" style="animation-delay: 0.12s">
+      <div class="flex items-center gap-[1cqw] px-[2cqw] py-[1.8cqh] border-b border-white/10">
+        <span class="w-[1.4cqh] h-[1.4cqh] rounded-full bg-[#ef5f57] block"></span>
+        <span class="w-[1.4cqh] h-[1.4cqh] rounded-full bg-[#f0bd44] block"></span>
+        <span class="w-[1.4cqh] h-[1.4cqh] rounded-full bg-[#5dc466] block"></span>
+        <span class="font-mono text-[1.5cqh] text-[#7b8aa3] ml-[1cqw]">prompt.txt</span>
+        
+        <button 
+          id="copy-btn"
+          data-text={promptText}
+          class="ml-auto flex items-center gap-[0.7cqw] bg-brand-blue hover:bg-[#1d63c0] text-white border-none rounded-[0.8cqh] px-[1.4cqw] py-[0.9cqh] font-display font-semibold text-[1.5cqh] cursor-pointer transition-colors"
+        >
+          Copiar
+        </button>
+      </div>
+      <div class="p-[2.8cqh_2.4cqw_3cqh] font-mono text-[1.95cqh] leading-[1.85] text-[#cbd5e1] whitespace-pre-wrap" set:html={processedPrompt}></div>
+    </div>
+  </div>
+
+  <div class="relative z-10 mt-[3cqh] flex items-center gap-[1cqw] animate-rise-in" style="animation-delay: 0.4s">
+    <span class="font-body text-[2cqh] text-ink-secondary" set:html={footerHighlight}></span>
+  </div>
+</SlideFrame>
+
+<script>
+  document.querySelectorAll('#copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-text') || '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = btn.textContent;
+        btn.textContent = '✓ Copiado';
+        (btn as HTMLElement).style.backgroundColor = '#1f8a5b';
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          (btn as HTMLElement).style.backgroundColor = '';
+        }, 1800);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
+    });
+  });
+</script>

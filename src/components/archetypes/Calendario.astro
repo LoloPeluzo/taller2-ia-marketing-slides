@@ -1,0 +1,74 @@
+---
+import SlideFrame from '../SlideFrame.astro';
+
+interface Props {
+  num: string;
+  kicker: string;
+  title: string;
+  subtitle: string;
+  footerHighlight: string;
+  days: {
+    day: string;
+    active: boolean;
+    pilar?: string;
+    type?: string;
+  }[];
+}
+
+const { num, kicker, title, subtitle, footerHighlight, days } = Astro.props;
+---
+
+<SlideFrame num={num} kicker={kicker}>
+  <style>
+    @keyframes popIn { 
+      from { opacity: 0; transform: translateY(2.4cqh) scale(.97); } 
+      to { opacity: 1; transform: none; } 
+    }
+    .animate-pop-in {
+      animation: popIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+  </style>
+
+  <div class="flex items-end justify-between gap-[4cqw] animate-rise-in">
+    <div>
+      <h1 class="font-display font-bold text-[6.2cqh] leading-none tracking-[-0.02em] m-0 text-brand-blue">{title}</h1>
+    </div>
+    <div class="flex items-center gap-[1cqw] bg-white border border-border-dark rounded-[10cqh] px-[1.8cqw] py-[1.1cqh]">
+      <span class="w-[1.3cqh] h-[1.3cqh] rounded-full bg-brand-blue block"></span>
+      <span class="font-display font-semibold text-[1.7cqh] text-ink">{subtitle}</span>
+    </div>
+  </div>
+
+  <div class="relative z-10 flex-1 grid grid-cols-7 gap-[1.4cqw] my-[4cqh]">
+    {days.map((d, i) => (
+      <div 
+        class={`rounded-[1.2cqh] p-[2.2cqh_1.1cqw] flex flex-col animate-pop-in ${d.active ? 'bg-white border-border-dark shadow-[0_1px_2px_rgba(15,23,42,0.05)] border' : 'bg-[#f6f7f9] border-[#e9ebef] border shadow-none opacity-85'}`}
+        style={`border-top: 0.7cqh solid ${d.active ? 'var(--color-brand-blue)' : '#e3e6ea'}; animation-delay: ${0.12 + i * 0.06}s;`}
+      >
+        <div class={`font-display font-bold text-[1.7cqh] tracking-[0.14em] uppercase ${d.active ? 'text-brand-blue' : 'text-[#aab2bd]'}`}>
+          {d.day}
+        </div>
+        <div class="h-[1px] bg-[#e9ebef] my-[1.6cqh]"></div>
+        
+        {d.active ? (
+          <div class="flex-1 flex flex-col">
+            <div class="font-display font-semibold text-[2.1cqh] leading-[1.15] text-ink">{d.pilar}</div>
+            <div class="mt-auto">
+              <span class="inline-block font-body font-semibold text-[1.4cqh] text-brand-blue bg-brand-blue/10 rounded-[6cqh] px-[1cqw] py-[0.5cqh]">
+                {d.type}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div class="flex-1 flex items-center justify-center">
+            <span class="font-display font-semibold text-[2.4cqh] text-[#cbd0d8]">—</span>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <div class="relative z-10 flex items-center gap-[1.6cqw] animate-rise-in" style="animation-delay: 0.5s">
+    <span class="font-display font-bold text-[2.5cqh] text-ink" set:html={footerHighlight}></span>
+  </div>
+</SlideFrame>

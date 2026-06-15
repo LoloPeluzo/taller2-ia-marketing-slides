@@ -1,0 +1,18 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import Statement from '../../components/archetypes/Statement.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={1} 
+  totalSlides={6} 
+  nextUrl="/estrategia/2"
+>
+  <Statement 
+    num="01"
+    kicker="Estrategia · Pilares"
+    title1="El problema no es la herramienta."
+    title2="Es "
+    highlight="«no sé qué<br/>publicar hoy»."
+  />
+</DeckLayout>

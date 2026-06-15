@@ -1,0 +1,32 @@
+---
+interface Props {
+  num: string;
+  kicker: string;
+}
+
+const { num, kicker } = Astro.props;
+---
+
+<div class="slide-container">
+  <div class="slide-inner flex flex-col justify-center px-[8cqw] py-[9cqh]">
+    
+    <!-- Watermark number -->
+    <span class="absolute -right-[1cqw] -bottom-[9cqh] font-display font-bold text-[52cqh] leading-none text-brand-blue opacity-5 tracking-[-0.04em] z-0 pointer-events-none select-none">
+      {num}
+    </span>
+    
+    <!-- Kicker -->
+    {kicker && (
+      <div class="relative z-10 flex items-center gap-[1.6cqw] mb-[6cqh] animate-rise-in">
+        <span class="w-[3.6cqh] h-[0.55cqh] bg-brand-red block"></span>
+        <span class="font-display font-bold text-[1.55cqh] tracking-[0.26em] text-brand-red uppercase">{kicker}</span>
+      </div>
+    )}
+
+    <!-- Content -->
+    <div class="relative z-10 flex-1 flex flex-col justify-center">
+      <slot />
+    </div>
+    
+  </div>
+</div>

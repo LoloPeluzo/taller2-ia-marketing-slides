@@ -1,0 +1,29 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import Calendario from '../../components/archetypes/Calendario.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={5} 
+  totalSlides={6} 
+  prevUrl="/estrategia/4"
+  nextUrl="/estrategia/6"
+  themeName="Calendario"
+>
+  <Calendario 
+    num="05"
+    kicker="Estrategia · Calendario"
+    title="Tu semana, con un pilar por día"
+    subtitle="3 publicaciones / semana"
+    footerHighlight="Constancia, <span class='text-brand-red'>no volumen</span>."
+    days={[
+      { day: 'Lun', active: true, pilar: 'Tips útiles', type: 'educativa' },
+      { day: 'Mar', active: false },
+      { day: 'Mié', active: true, pilar: 'Detrás de cámaras', type: 'storytelling' },
+      { day: 'Jue', active: false },
+      { day: 'Vie', active: true, pilar: 'Clientes felices', type: 'engagement' },
+      { day: 'Sáb', active: false },
+      { day: 'Dom', active: false }
+    ]}
+  />
+</DeckLayout>

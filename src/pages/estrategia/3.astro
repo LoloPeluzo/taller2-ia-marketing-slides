@@ -1,0 +1,25 @@
+---
+import DeckLayout from '../../layouts/DeckLayout.astro';
+import PilaresRestaurante from '../../components/archetypes/PilaresRestaurante.astro';
+---
+
+<DeckLayout 
+  currentSlideNum={3} 
+  totalSlides={6} 
+  prevUrl="/estrategia/2"
+  nextUrl="/estrategia/4"
+>
+  <PilaresRestaurante 
+    num="03"
+    kicker="Estrategia · Ejemplo"
+    title="Ejemplo: un restaurante de barrio"
+    footerHighlight="<span class='text-brand-blue'>70% aporta valor</span>, solo el <span class='text-brand-red'>10% vende</span>."
+    cards={[
+      { name: 'Platos estrella', desc: 'Mostrar el producto, dar ganas de ir', pct: 30, color: 'blue' },
+      { name: 'Detrás de cámaras', desc: 'Humanizar la marca, generar cercanía', pct: 25, color: 'blue' },
+      { name: 'Clientes felices', desc: 'Prueba social, testimonios reales', pct: 20, color: 'blue' },
+      { name: 'Tips culinarios', desc: 'Aportar valor, posicionarse como experto', pct: 15, color: 'blue' },
+      { name: 'Promociones', desc: 'Vender directo, eventos, reservas', pct: 10, color: 'red' }
+    ]}
+  />
+</DeckLayout>
