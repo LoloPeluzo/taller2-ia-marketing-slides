@@ -1,10 +1,78 @@
+---
+import '../styles/global.css';
+
+const pasos = Object.values(import.meta.glob('../content/pasos/*.md', { eager: true })) as any[];
+// Sort by modulo and orderInModule
+const sortedPasos = pasos.sort((a, b) => {
+  const aMod = a.frontmatter.modulo || '';
+  const bMod = b.frontmatter.modulo || '';
+  if (aMod !== bMod) return aMod.localeCompare(bMod);
+  return (a.frontmatter.orderInModule || 0) - (b.frontmatter.orderInModule || 0);
+});
+
+// Group by modulo
+const modulos = sortedPasos.reduce((acc, paso) => {
+  const modulo = paso.frontmatter.modulo || 'otros';
+  if (!acc[modulo]) acc[modulo] = [];
+  acc[modulo].push(paso);
+  return acc;
+}, {} as Record<string, any[]>);
+---
+
 <!DOCTYPE html>
-código de las diapositivas:
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Práctico de Marketing con IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3f4f6;
+      color: #333;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center py-10 px-4">
 
-
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <a href="#" style="padding: 10px 15px; background: #114a90; color: #fff; text-decoration: none; border-radius: 5px; opacity: 0.5; pointer-events: none">Anterior</a>
-        <span style="padding: 10px 15px; background: #fff; color: #333; border-radius: 5px; border: 1px solid #ccc;">1 / 26</span>
-        <a href="/slide-2" style="padding: 10px 15px; background: #114a90; color: #fff; text-decoration: none; border-radius: 5px; opacity: 1; pointer-events: auto">Siguiente</a>
-    </div>
+  <main class="w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden relative">
+    <div class="w-full h-3 bg-[#114a90]"></div>
     
+    <header class="px-10 py-8 border-b border-gray-100">
+      <h1 class="text-4xl font-bold text-[#114a90]">Taller Práctico de Marketing con IA</h1>
+      <p class="text-lg text-gray-500 mt-2 font-light">De la idea al contenido programado: crea, organiza y programa una semana de contenido.</p>
+    </header>
+
+    <article class="px-10 py-8">
+      <h2 class="text-2xl font-semibold mb-6">Índice del Taller</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {Object.entries(modulos).map(([nombreModulo, pasosDelModulo]) => (
+          <div class="bg-gray-50 rounded-lg p-6 border border-gray-100">
+            <h3 class="text-lg font-bold uppercase tracking-wider text-gray-500 mb-4">{nombreModulo}</h3>
+            <ul class="space-y-3">
+              {pasosDelModulo.map(paso => {
+                const slug = paso.file.split('/').pop().split('.').shift();
+                return (
+                  <li>
+                    <a href={`/pasos/${slug}`} class="block group">
+                      <div class="font-semibold text-[#114a90] group-hover:underline">{paso.frontmatter.title}</div>
+                      <div class="text-sm text-gray-500">{paso.frontmatter.subtitle}</div>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+      
+      <div class="mt-10 flex gap-4">
+        <a href="/slide-1" class="px-6 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition">Ver Diapositivas Originales</a>
+      </div>
+    </article>
+    
+  </main>
+</body>
+</html>
